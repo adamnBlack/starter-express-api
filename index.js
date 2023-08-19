@@ -21,17 +21,30 @@ require('dotenv').config();
 const app = express();
 
 // db connection
+// const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/mern_dollaroll';
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(
+//       uri,
+//       {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useCreateIndex: true,
+//         useFindAndModify: false,
+//       }
+//     );
+//     console.log('MongoDB Connected');
+//   } catch (err) {
+//     console.error(err.message);
+//     // exit process with failure
+//     process.exit(1);
+//   }
+// };
 const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/mern_dollaroll';
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      uri,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-      }
+      uri
     );
     console.log('MongoDB Connected');
   } catch (err) {
@@ -69,7 +82,7 @@ app.use(cors());
 // }
 
 // const PORT = process.env.PORT || 4000;
-const PORT = 4000;
+const PORT = 3000;
 app.get('/', (req, res) => {
     console.log("Just got a request!")
     res.send('hello!')
