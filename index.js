@@ -21,10 +21,11 @@ require('dotenv').config();
 const app = express();
 
 // db connection
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/mern_dollaroll';
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      process.env.MONGODB_URI,
+      uri,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -39,7 +40,7 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-connectDB();
+// connectDB();
 
 // middlewares
 app.use(morgan('dev'));
@@ -67,16 +68,20 @@ app.use(cors());
 //   });
 // }
 
-const PORT = process.env.PORT || 4000;
-
+// const PORT = process.env.PORT || 4000;
+const PORT = 4000;
 app.get('/', (req, res) => {
     console.log("Just got a request!")
     res.send('hello!')
 })
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+connectDB().then(
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      })
+);
+
 
 
 //const app = express()
