@@ -20,33 +20,33 @@ require('dotenv').config();
 // app
 const app = express();
 
-// // db connection
-// const connectDB = async () => {
-//   try {
-//     await mongoose.connect(
-//       process.env.MONGODB_URI,
-//       {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         useCreateIndex: true,
-//         useFindAndModify: false,
-//       }
-//     );
-//     console.log('MongoDB Connected');
-//   } catch (err) {
-//     console.error(err.message);
-//     // exit process with failure
-//     process.exit(1);
-//   }
-// };
-// connectDB();
+// db connection
+const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      process.env.MONGODB_URI,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+      }
+    );
+    console.log('MongoDB Connected');
+  } catch (err) {
+    console.error(err.message);
+    // exit process with failure
+    process.exit(1);
+  }
+};
+connectDB();
 
-// // middlewares
-// app.use(morgan('dev'));
-// app.use(bodyParser.json());
-// app.use(cookieParser());
-// app.use(expressValidator());
-// app.use(cors());
+// middlewares
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(expressValidator());
+app.use(cors());
 
 // // routes middleware
 // app.use('/api', authRoutes);
@@ -55,7 +55,7 @@ const app = express();
 // app.use('/api', productRoutes);
 // app.use('/api', braintreeRoutes);
 // app.use('/api', orderRoutes);
-// app.use('/api/posts', postsRouter);
+ app.use('/api/posts', postsRouter);
 
 // // Server static assets if in production
 // if (process.env.NODE_ENV === 'production') {
