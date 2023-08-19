@@ -7,7 +7,7 @@ const cors = require('cors');
 const path = require('path');
 const expressValidator = require('express-validator');
 
-const authRoutes = require('./routes/auth');
+//const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
@@ -17,9 +17,8 @@ const postsRouter = require("./routes/posts");
 
 require('dotenv').config();
 
-
-// // app
-// const app = express();
+// app
+const app = express();
 
 // // db connection
 // const connectDB = async () => {
