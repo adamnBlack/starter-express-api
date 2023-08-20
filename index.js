@@ -1,5 +1,6 @@
 const express = require('express')
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')({
+    bufferTimeoutMS: 300000,});
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -31,7 +32,6 @@ const connectDB = async () => {
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false,
-        bufferTimeoutMS: 300000,
       }
     );
     console.log('MongoDB Connected');
